@@ -70,7 +70,7 @@ export default function Home() {
     setWorldError(null);
     setWorldMessage(null);
     try {
-      const response = await fetch('/api/world');
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL +'/api/world');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -91,7 +91,7 @@ export default function Home() {
     try {
       const accessToken = await getAccessToken();
       if (!accessToken) throw new Error('No access token found');
-      const response = await fetch('/api/world', {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL +'/api/world', {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       if (!response.ok) {
